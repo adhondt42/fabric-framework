@@ -1,0 +1,6 @@
+[submodule "hyperledger-fabric-chaincode"]
+	path = hyperledger-fabric-chaincode
+	url = https://github.com/TommyStarK/hyperledger-fabric-chaincode.git
+[submodule "hyperledger-fabric-network"]
+	path = hyperledger-fabric-network
+	url = https://github.com/TommyStarK/hyperledger-fabric-network.git

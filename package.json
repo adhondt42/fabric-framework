@@ -1,0 +1,73 @@
+{
+  "name": "fabric-framework",
+  "version": "1.0.0",
+  "description": "Hyperledger Fabric framework to easily build a blockchain app based on https://github.com/hyperledger/fabric-sdk-node",
+  "main": "index.js",
+  "repository": "https://github.com/TommyStarK/fabric-framework.git",
+  "author": "TommyStarK <thomasmilox@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "babel lib --out-dir dist",
+    "debug": "node --inspect-brk dist/framework.js",
+    "serve": "node dist/index.js",
+    "start": "nodemon --exec babel-node index.js",
+    "test:local": "nyc --reporter=lcov ava",
+    "test:integration": "./scripts/run_tests.sh",
+    "coverage": "codecov"
+  },
+  "dependencies": {
+    "fabric-ca-client": "^1.4.8",
+    "fabric-client": "^1.4.8",
+    "fabric-network": "^1.4.8"
+  },
+  "devDependencies": {
+    "@ava/babel": "^1.0.1",
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/node": "^7.8.7",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-proposal-json-strings": "^7.8.3",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/plugin-syntax-import-meta": "^7.8.3",
+    "@babel/plugin-syntax-jsx": "^7.8.3",
+    "@babel/polyfill": "^7.8.7",
+    "@babel/preset-env": "^7.9.5",
+    "@babel/register": "^7.9.0",
+    "ava": "^3.7.0",
+    "codecov": "^3.6.5",
+    "eslint": "^6.8.0",
+    "nodemon": "^2.0.3",
+    "nyc": "^15.0.1"
+  },
+  "resolutions": {
+    "**/event-stream": "^4.0.1"
+  },
+  "ava": {
+    "files": [
+      "tests/*.js"
+    ],
+    "require": [
+      "@babel/register",
+      "@babel/polyfill"
+    ],
+    "babel": {
+      "testOptions": {
+        "plugins": [
+          "@babel/plugin-syntax-dynamic-import",
+          "@babel/plugin-syntax-import-meta",
+          [
+            "@babel/plugin-proposal-class-properties",
+            {
+              "loose": false
+            }
+          ],
+          "@babel/plugin-proposal-json-strings"
+        ],
+        "presets": [
+          "@babel/preset-env"
+        ]
+      }
+    }
+  }
+}
