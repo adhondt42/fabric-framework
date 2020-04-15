@@ -19,7 +19,8 @@
   "dependencies": {
     "fabric-ca-client": "^1.4.8",
     "fabric-client": "^1.4.8",
-    "fabric-network": "^1.4.8"
+    "fabric-network": "^1.4.8",
+    "js-yaml": "^3.13.1"
   },
   "devDependencies": {
     "@ava/babel": "^1.0.1",
@@ -37,6 +38,10 @@
     "ava": "^3.7.0",
     "codecov": "^3.6.5",
     "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.19.0",
     "nodemon": "^2.0.3",
     "nyc": "^15.0.1"
   },
