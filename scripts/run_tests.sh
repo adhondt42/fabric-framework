@@ -1,7 +1,3 @@
 #!/usr/bin/env bash
 
-docker-compose -f hyperledger-fabric-network/docker-compose.yaml up -d
-sleep 10
-docker ps -a
-docker-compose -f hyperledger-fabric-network/docker-compose.yaml down
-
+docker-compose -f tests/hyperledger-fabric-network/docker-compose.yaml up -d orderer.dummy.com peer0.org1.dummy.com

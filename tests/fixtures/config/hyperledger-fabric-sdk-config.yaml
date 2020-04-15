@@ -43,11 +43,10 @@ client:
   tlsCerts:
     # [Optional]. Use system certificate pool when connecting to peers, orderers (for negotiating TLS) Default: false
     systemCertPool: false
-
     # [Optional]. Client key and cert for TLS handshake with peers and orderers
     client:
-      keyfile:
-      certfile:
+      keyfile: ../../hyperledger-fabric-network/crypto-config/peerOrganizations/org1.dummy.com/users/Admin@org1.dummy.com/tls/client.key
+      certfile: ../../hyperledger-fabric-network/crypto-config/peerOrganizations/org1.dummy.com/users/Admin@org1.dummy.com/tls/client.crt
 
 #
 # [Optional]. But most apps would have this section so that channel objects can be constructed

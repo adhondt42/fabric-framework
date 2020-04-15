@@ -1,7 +1,2 @@
-// 'use strict';
-
-// module.exports = require('./lib/framework');
-
-// import '@babel/polyfill';
-
-import * as framework from './lib/framework';
+// eslint-disable-next-line no-unused-vars
+import * as FabricFramework from './lib/framework';
