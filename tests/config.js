@@ -4,11 +4,6 @@ import test from 'ava';
 
 import Config from '../lib/config';
 
-test('dummy', async (t) => {
-  t.true(2 + 2 === 4);
-  await new Promise((r) => setTimeout(r, 1000));
-});
-
 test('no config path provided', (t) => {
   t.throws(() => {
     Config();
