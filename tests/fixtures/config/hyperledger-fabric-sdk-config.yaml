@@ -16,6 +16,9 @@ client:
   logging:
     level: debug
 
+  channelArtifacts:
+    path: ../../hyperledger-fabric-network/channel-artifacts
+
   # Root of the MSP directories with keys and certs.
   cryptoconfig:
     path: ../../hyperledger-fabric-network/crypto-config
@@ -27,8 +30,8 @@ client:
 
     # [Optional]. Specific to the CryptoSuite implementation used by GO SDK. Software-based implementations
     # requiring a key store. PKCS#11 based implementations does not.
-    cryptoStore:
-      path: /tmp/hyperledger-fabric-network-msp
+  cryptoStore:
+    path: /tmp/hyperledger-fabric-network-msp
 
    # BCCSP config for the client. Used by GO SDK.
   BCCSP:
@@ -130,7 +133,8 @@ organizations:
 #
 orderers:
   orderer.dummy.com:
-    url: localhost:7050
+    url: grpcs://orderer.dummy.com:7050
+    # url: grpcs://localhost:7050
 
     # these are standard properties defined by the gRPC library
     # they will be passed in as-is to gRPC client constructor
@@ -156,9 +160,11 @@ orderers:
 peers:
   peer0.org1.dummy.com:
     # this URL is used to send endorsement and query requests
-    url: localhost:7051
+    url: grpcs://peer0.org1.dummy.com:7051
+    # url: grpcs://localhost:7051
     # eventUrl is only needed when using eventhub (default is delivery service)
-    eventUrl: localhost:7053
+    eventUrl: grpcs://peer0.org1.dummy.com:7053
+    # eventUrl: grpcs://localhost:7053
 
     grpcOptions:
       ssl-target-name-override: peer0.org1.dummy.com
@@ -197,21 +203,21 @@ certificateAuthorities:
       # Certificate location absolute path
       path: ../../hyperledger-fabric-network/crypto-config/peerOrganizations/org1.dummy.com/ca/ca.org1.dummy.com-cert.pem
 
-entityMatchers:
-  peer:
-    - pattern: (\w*)peer0.org1.dummy.com(\w*)
-      urlSubstitutionExp: localhost:7051
-      eventUrlSubstitutionExp: localhost:7053
-      sslTargetOverrideUrlSubstitutionExp: peer0.org1.dummy.com
-      mappedHost: peer0.org1.dummy.com
+# entityMatchers:
+#   peer:
+#     - pattern: (\w*)peer0.org1.dummy.com(\w*)
+#       urlSubstitutionExp: localhost:7051
+#       eventUrlSubstitutionExp: localhost:7053
+#       sslTargetOverrideUrlSubstitutionExp: peer0.org1.dummy.com
+#       mappedHost: peer0.org1.dummy.com
 
-  orderer:
-    - pattern: (\w*)orderer.dummy.com(\w*)
-      urlSubstitutionExp: localhost:7050
-      sslTargetOverrideUrlSubstitutionExp: orderer.dummy.com
-      mappedHost: orderer.dummy.com
+#   orderer:
+#     - pattern: (\w*)orderer.dummy.com(\w*)
+#       urlSubstitutionExp: localhost:7050
+#       sslTargetOverrideUrlSubstitutionExp: orderer.dummy.com
+#       mappedHost: orderer.dummy.com
 
-  certificateAuthorities:
-    - pattern: (\w*)ca.org1.dummy.com(\w*)
-      urlSubstitutionExp: http://localhost:7054
-      mappedHost: ca.org1.dummy.com
+#   certificateAuthorities:
+#     - pattern: (\w*)ca.org1.dummy.com(\w*)
+#       urlSubstitutionExp: http://localhost:7054
+#       mappedHost: ca.org1.dummy.com
