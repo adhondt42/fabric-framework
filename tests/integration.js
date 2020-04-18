@@ -1,19 +1,43 @@
+import path from 'path';
+
 import test from 'ava';
+
 import createClient from '../lib';
 
-function createTestClient() {
-  return createClient('/home/tests/fixtures/config/hyperledger-fabric-sdk-config.yaml');
-}
-
-test.beforeEach((t) => {
-  const client = createTestClient();
-  // eslint-disable-next-line no-param-reassign
-  t.context.client = client;
-});
+const client = createClient(`${path.resolve(process.cwd())}/tests/fixtures/config/hyperledger-fabric-sdk-config.yaml`);
 
 test.serial('create channel', async (t) => {
-  const { client } = t.context;
-  t.notThrows(async () => {
+  try {
     await client.createChannel();
-  });
+    t.pass();
+  } catch (error) {
+    t.fail(error.toString());
+  }
+});
+
+test.serial('create channel that already exists', async (t) => {
+  try {
+    await client.createChannel();
+    t.pass();
+  } catch (error) {
+    t.fail(error.toString());
+  }
+});
+
+test.serial('join channel', async (t) => {
+  try {
+    await client.joinChannel();
+    t.pass();
+  } catch (error) {
+    t.fail(error.toString());
+  }
+});
+
+test.serial('join channel that has already been joined', async (t) => {
+  try {
+    await client.joinChannel();
+    t.pass();
+  } catch (error) {
+    t.fail(error.toString());
+  }
 });

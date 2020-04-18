@@ -12,6 +12,7 @@
     "debug": "node --inspect-brk dist/index.js",
     "serve": "node dist/index.js",
     "start": "nodemon --exec babel-node lib/index.js",
+    "test:local:nocodecov": "nyc ava -T 100000 --verbose",
     "test:local": "nyc --reporter=lcov ava -T 100000 --verbose",
     "test:integration": "./scripts/run_tests.sh",
     "coverage": "codecov"
