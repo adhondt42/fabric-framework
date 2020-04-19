@@ -41,3 +41,23 @@ test.serial('join channel that has already been joined', async (t) => {
     t.fail(error.toString());
   }
 });
+
+process.env.GOPATH = `${path.resolve(process.cwd())}/tests`;
+
+test.serial('install simple asset chaincode', async (t) => {
+  try {
+    await client.installChaincode('sacc', 'hyperledger-fabric-chaincode', 'golang', '1.0');
+    t.pass();
+  } catch (error) {
+    t.fail(error.toString());
+  }
+});
+
+test.serial('install chaincode already installed', async (t) => {
+  try {
+    await client.installChaincode('sacc', 'hyperledger-fabric-chaincode', 'golang', '1.0');
+    t.pass();
+  } catch (error) {
+    t.fail(error.toString());
+  }
+});

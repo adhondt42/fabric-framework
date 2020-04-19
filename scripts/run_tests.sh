@@ -7,7 +7,7 @@ docker-compose -f tests/hyperledger-fabric-network/docker-compose-ci.yaml --proj
 docker build . -t fabric_framework_test_with_ava_job_${BUILD_NUMBER};
 
 docker run --rm --network=hyperledger-fabric-network_${BUILD_NUMBER}_default -v `pwd`:/home \
-fabric_framework_test_with_ava_job_${BUILD_NUMBER} bash -c 'yarn test:local; exit $?;';
+fabric_framework_test_with_ava_job_${BUILD_NUMBER} bash -c 'npm rebuild; yarn test:local; exit $?;';
 
 rc=$?;
 
